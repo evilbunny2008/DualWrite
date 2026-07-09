@@ -4,7 +4,12 @@ import configobj
 
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
+
+CONFIG = """
+[DualWrite]
+    binding = wx_binding_sqlite
+"""
 
 def loader():
     """ Load and return the extension installer. """
@@ -21,9 +26,9 @@ class SinceLastArchiveAccumulatorInstaller(ExtensionInstaller):
             'description': ' Simple extension to save the archive data to a secondary wx_binding',
             'author': "John Smith",
             'author_email': "deltafoxtrot256+DualWrite@gmail.com",
-            'files': [('bin/user', ['bin/user/dualwrite.py'])]
+            'files': [('bin/user', ['bin/user/dualwrite.py'])],
+            'config': configobj.ConfigObj(StringIO(CONFIG)),
+            'archive_services': 'user.dualwrite.DualWrite',
         }
-
-        install_dict['archive_services'] = 'user.dualwrite.DualWrite'
 
         super().__init__(install_dict)
