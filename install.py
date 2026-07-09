@@ -1,10 +1,12 @@
 """ Installer for SinceLastArchiveAccumulator service. """
 
+from io import StringIO
+
 import configobj
 
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
 CONFIG = """
 [DualWrite]
